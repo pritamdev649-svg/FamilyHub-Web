@@ -1,229 +1,302 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Rocket, MapPin, CheckCircle, Mail, Download, Star, ChevronDown, Check, Swords, Coins, ShieldAlert, Scroll } from 'lucide-react';
+import { Rocket, MapPin, Check, Play, Moon, Star, Download } from 'lucide-react';
 import { useState } from 'react';
 import Link from 'next/link';
 
 export default function Home() {
-  const { scrollYProgress } = useScroll();
   const [activeGuide, setActiveGuide] = useState<string | null>(null);
   const [quests, setQuests] = useState([false, false, false]);
-
   const guides = ['Pip', 'Ember', 'Tink', 'Luna', 'Coco', 'Zap'];
 
   return (
-    <main className="bg-[#f8fafc] min-h-screen text-slate-900 font-sans selection:bg-indigo-100">
+    <main className="bg-white min-h-screen text-[#111111] font-sans antialiased selection:bg-indigo-100">
       
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-100 px-6 py-4 flex justify-between items-center">
-        <div className="font-bold text-xl tracking-tight flex items-center gap-2">
-          <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white">🫧</div>
+      <nav className="fixed top-0 w-full bg-white/70 backdrop-blur-xl z-50 px-6 py-4 flex justify-between items-center border-b border-gray-100 transition-all">
+        <div className="font-semibold text-lg tracking-tight flex items-center gap-2">
           FamilyHub
         </div>
-        <div className="hidden md:flex gap-6 text-sm font-bold text-slate-500 uppercase tracking-widest">
-          <a href="#start" className="hover:text-indigo-600 transition">Start Game</a>
-          <a href="#features" className="hover:text-indigo-600 transition">Features</a>
-          <a href="#gameplay" className="hover:text-indigo-600 transition">Gameplay</a>
+        <div className="hidden md:flex gap-8 text-sm font-medium text-gray-500">
+          <a href="#day0" className="hover:text-black transition-colors">Start</a>
+          <a href="#day1" className="hover:text-black transition-colors">07:00</a>
+          <a href="#day2" className="hover:text-black transition-colors">08:15</a>
+          <a href="#day3" className="hover:text-black transition-colors">16:00</a>
+          <a href="#day4" className="hover:text-black transition-colors">19:30</a>
+          <a href="#day5" className="hover:text-black transition-colors">21:30</a>
         </div>
-        <a href="#download" className="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-bold uppercase tracking-wider hover:bg-indigo-700 transition shadow-sm border-b-4 border-indigo-800 active:border-b-0 active:translate-y-1">
-          Play Now
+        <a href="#download" className="bg-black text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-transform hover:scale-105 active:scale-95">
+          Get the app
         </a>
       </nav>
 
       {/* Hero / Start */}
-      <section id="start" className="min-h-screen flex flex-col items-center justify-center pt-20 px-4 text-center relative overflow-hidden">
+      <section id="day0" className="min-h-screen flex flex-col items-center justify-center pt-24 px-6 text-center">
         <motion.p 
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-          className="text-indigo-600 font-bold mb-4 uppercase tracking-widest"
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.8 }}
+          className="text-indigo-600 font-medium mb-6 tracking-wide text-sm"
         >
-          Level up your household
+          psst… it's almost morning
         </motion.p>
         <motion.h1 
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-          className="text-5xl md:text-7xl font-black tracking-tight text-slate-900 mb-6 max-w-4xl leading-tight"
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }}
+          className="text-5xl md:text-7xl font-bold tracking-[-0.04em] text-black mb-6 max-w-3xl leading-[1.1]"
         >
-          Running your family is now a <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Multiplayer Game</span>
+          One day with FamilyHub
         </motion.h1>
         <motion.p 
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
-          className="text-xl text-slate-500 max-w-2xl mb-16 leading-relaxed"
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}
+          className="text-xl text-gray-500 max-w-xl mx-auto mb-16 leading-relaxed font-normal"
         >
-          FamilyHub turns chores into quests, allowances into loot, and safety into team coordination. First, pick your guide.
+          Scroll to play through a whole day — wake-up to lights-out. First, pick who's coming with you.
         </motion.p>
 
         <motion.div 
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-4 max-w-2xl"
+          initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5, duration: 0.8 }}
+          className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto"
         >
           {guides.map((guide) => (
             <button 
               key={guide}
               onClick={() => setActiveGuide(guide)}
-              className={`px-6 py-4 rounded-2xl text-lg font-black uppercase tracking-wider transition-all duration-300 ${activeGuide === guide ? 'bg-indigo-600 text-white scale-110 shadow-lg shadow-indigo-200 border-b-4 border-indigo-800' : 'bg-white text-slate-400 hover:bg-slate-50 border-2 border-slate-200 hover:scale-105 border-b-4'}`}
+              className={`px-8 py-5 rounded-2xl text-lg font-semibold transition-all duration-300 flex flex-col items-center ${
+                activeGuide === guide 
+                ? 'bg-black text-white shadow-xl scale-[1.02]' 
+                : 'bg-[#f5f5f7] text-gray-400 hover:bg-gray-100 hover:text-black'
+              }`}
             >
+              <span className={`block text-xs mb-1 transition-opacity ${activeGuide === guide ? 'opacity-0' : 'opacity-40'}`}>
+                z z
+              </span>
               {guide}
             </button>
           ))}
         </motion.div>
         
-        <p className="mt-8 text-sm text-slate-400 font-bold uppercase tracking-widest h-6">
-          {activeGuide ? `${activeGuide} joins your party!` : "Select your companion to begin"}
+        <p className="mt-12 text-sm text-gray-400 font-medium h-6">
+          {activeGuide ? `${activeGuide} is awake and ready!` : "everyone's still asleep — tap one to wake your guide"}
         </p>
+      </section>
 
+      {/* 07:00 Wake Up */}
+      <section id="day1" className="min-h-screen flex flex-col md:flex-row items-center justify-center py-20 px-6 gap-12 max-w-5xl mx-auto">
         <motion.div 
-          animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 text-slate-300"
+          initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.7 }}
+          className="flex-1 space-y-6 max-w-lg"
         >
-          <ChevronDown size={32} />
+          <div className="text-gray-400 font-semibold tracking-widest text-xs uppercase">07:00 · wake up</div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-black">The alarm is a space launch <span className="inline-block text-3xl">🚀</span></h2>
+          <p className="text-lg text-gray-500 leading-relaxed font-normal">
+            No blaring siren. {activeGuide || 'Zap'} counts down, the room lights up, and getting out of bed earns the first points of the day.
+          </p>
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.7 }}
+          className="flex-1 w-full bg-[#f5f5f7] p-10 rounded-[2.5rem] relative overflow-hidden text-center group hover:bg-[#f0f0f2] transition-colors"
+        >
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-rose-500"></div>
+          <div className="text-7xl mb-6 mt-4 opacity-90 transition-transform group-hover:scale-110 duration-500">☀️</div>
+          <h3 className="text-3xl font-bold mb-2">07:00</h3>
+          <p className="text-gray-500 font-medium mb-10">Liftoff! +10 ⭐ for a smooth launch</p>
+          <button className="bg-black text-white w-full py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 hover:bg-gray-800 transition-all active:scale-[0.98]">
+            <Rocket size={18} /> Launched!
+          </button>
         </motion.div>
       </section>
 
-      {/* Features (Game Mechanics) */}
-      <section id="features" className="py-24 px-6 max-w-6xl mx-auto border-t-4 border-dashed border-slate-200">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-black text-slate-900 uppercase tracking-tight">Core Mechanics</h2>
-          <p className="text-slate-500 mt-4 max-w-2xl mx-auto font-medium">What makes FamilyHub the ultimate co-op experience.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { title: "Daily Quests", desc: "Task management. Assign chores, study goals, and errands. Earn XP.", icon: Swords, color: "text-rose-500", bg: "bg-rose-100", border: "border-rose-200" },
-            { title: "Guild Ledger", desc: "Shared money ledger. Track allowances, set savings goals, manage loot.", icon: Coins, color: "text-amber-500", bg: "bg-amber-100", border: "border-amber-200" },
-            { title: "Town Square", desc: "Notice board. Pin important family announcements for the whole party.", icon: Scroll, color: "text-emerald-500", bg: "bg-emerald-100", border: "border-emerald-200" },
-            { title: "Distress Flare", desc: "SOS Alerts. One tap alerts the whole family with live location tracking.", icon: ShieldAlert, color: "text-blue-500", bg: "bg-blue-100", border: "border-blue-200" },
-          ].map((f, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} viewport={{ once: true }}
-              className={`p-6 bg-white rounded-3xl border-2 ${f.border} shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2`}
-            >
-              <div className={`w-14 h-14 ${f.bg} ${f.color} rounded-2xl flex items-center justify-center mb-6`}>
-                <f.icon size={28} />
-              </div>
-              <h3 className="text-xl font-black text-slate-900 mb-2 uppercase tracking-wide">{f.title}</h3>
-              <p className="text-slate-600 font-medium">{f.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+      {/* 08:15 School Run */}
+      <section id="day2" className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center py-20 px-6 gap-12 max-w-5xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.7 }}
+          className="flex-1 w-full bg-[#f5f5f7] p-10 rounded-[2.5rem] relative overflow-hidden"
+        >
+          <div className="flex justify-between items-center mb-16 relative px-4">
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl z-10 shadow-sm">🏠</div>
+            <div className="absolute top-1/2 left-0 w-full h-[2px] bg-emerald-100 -translate-y-1/2"></div>
+            <div className="absolute top-1/2 left-0 w-full h-[2px] bg-emerald-400 -translate-y-1/2 origin-left scale-x-100 transition-transform duration-1000"></div>
+            <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center text-3xl z-10 shadow-lg shadow-emerald-500/30 text-white">🏫</div>
+          </div>
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-5 py-2.5 rounded-full font-semibold text-sm mb-4">
+              <MapPin size={16} /> Lina arrived at school
+            </div>
+            <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">live only · nothing kept</p>
+          </div>
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.7 }}
+          className="flex-1 space-y-6 max-w-lg"
+        >
+          <div className="text-gray-400 font-semibold tracking-widest text-xs uppercase">08:15 · school run</div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-black">One quiet ping: made it <span className="inline-block text-3xl">🎒</span></h2>
+          <p className="text-lg text-gray-500 leading-relaxed font-normal">
+            Safe zones say "arrived", not "tracked". Live location only — FamilyHub keeps no history of where your child has been.
+          </p>
+        </motion.div>
       </section>
 
-      {/* Gameplay Narrative */}
-      <section id="gameplay" className="py-20 border-t border-slate-200 bg-white">
-        <div className="text-center mb-10">
-          <h2 className="text-4xl font-black text-slate-900 uppercase tracking-tight">One day in-game</h2>
-        </div>
-        
-        {/* 07:00 Wake Up */}
-        <div className="flex flex-col md:flex-row items-center justify-center py-20 px-6 gap-16 max-w-6xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }}
-            className="flex-1 space-y-6"
-          >
-            <div className="text-indigo-600 font-bold tracking-widest text-sm uppercase">07:00 · wake up</div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight">The alarm is a space launch 🚀</h2>
-            <p className="text-xl text-slate-500 leading-relaxed font-medium">
-              No blaring siren. {activeGuide || 'Zap'} counts down, the room lights up, and getting out of bed earns the first XP of the day.
-            </p>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-100px" }}
-            className="flex-1 bg-slate-50 p-8 rounded-[2rem] border-4 border-slate-200 relative overflow-hidden text-center"
-          >
-            <div className="absolute top-0 left-0 w-full h-4 bg-gradient-to-r from-orange-400 to-red-500"></div>
-            <div className="text-6xl mb-6 mt-4">☀️</div>
-            <h3 className="text-3xl font-black mb-2 uppercase">07:00</h3>
-            <p className="text-slate-500 font-bold mb-8">Liftoff! +10 ⭐ for a smooth launch</p>
-            <button className="bg-slate-900 text-white w-full py-4 rounded-xl font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-slate-800 transition border-b-4 border-slate-950 active:border-b-0 active:translate-y-1">
-              <Rocket size={20} /> Launched!
-            </button>
-          </motion.div>
-        </div>
-
-        {/* 16:00 Quest Time */}
-        <div className="flex flex-col md:flex-row items-center justify-center py-20 px-6 gap-16 max-w-6xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-100px" }}
-            className="flex-1 bg-amber-50 p-8 rounded-[2rem] border-4 border-amber-200"
-          >
-            <div className="flex justify-between items-end mb-8">
-              <div>
-                <div className="text-4xl font-black text-amber-600 flex items-center gap-2">
-                  55 <Star className="fill-amber-500 text-amber-500" />
-                </div>
-                <div className="text-sm text-amber-800 font-bold uppercase tracking-wider mt-1">XP earned today</div>
+      {/* 16:00 Quest Time */}
+      <section id="day3" className="min-h-screen flex flex-col md:flex-row items-center justify-center py-20 px-6 gap-12 max-w-5xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.7 }}
+          className="flex-1 space-y-6 max-w-lg"
+        >
+          <div className="text-gray-400 font-semibold tracking-widest text-xs uppercase">16:00 · quest time</div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-black">Chores, but make them quests <span className="inline-block text-3xl">⭐</span></h2>
+          <p className="text-lg text-gray-500 leading-relaxed font-normal">
+            You set the quests and the rewards. {activeGuide || 'Zap'} does the cheering. Go on — tap them done.
+          </p>
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.7 }}
+          className="flex-1 w-full bg-[#f5f5f7] p-10 rounded-[2.5rem]"
+        >
+          <div className="flex justify-between items-end mb-8 px-2">
+            <div>
+              <div className="text-4xl font-bold text-amber-500 flex items-center gap-2 mb-1">
+                55 <Star className="fill-amber-500 text-amber-500 w-8 h-8" />
               </div>
-              <div className="text-5xl drop-shadow-sm">🔥</div>
+              <div className="text-sm text-gray-400 font-semibold">earned today</div>
             </div>
+            <div className="text-4xl grayscale opacity-80">🔥</div>
+          </div>
 
-            <div className="space-y-4">
-              {[
-                { icon: '🛏️', task: 'Make the bed', pts: '+10 ⭐' },
-                { icon: '📗', task: 'Read 20 minutes', pts: '+15 ⭐' },
-                { icon: '🐕', task: 'Walk Biscuit', pts: '+20 ⭐' }
-              ].map((q, i) => (
-                <button 
-                  key={i}
-                  onClick={() => {
-                    const newQ = [...quests];
-                    newQ[i] = !newQ[i];
-                    setQuests(newQ);
-                  }}
-                  className={`w-full flex items-center p-4 rounded-2xl transition-all duration-300 border-b-4 active:border-b-0 active:translate-y-1 ${quests[i] ? 'bg-amber-500 text-white border-amber-600' : 'bg-white text-slate-700 border-slate-200 hover:border-amber-300'}`}
-                >
-                  <div className={`w-8 h-8 rounded-full border-4 mr-4 flex items-center justify-center ${quests[i] ? 'border-white' : 'border-slate-200'}`}>
-                    {quests[i] && <Check strokeWidth={4} size={16} />}
-                  </div>
-                  <span className="text-2xl mr-4">{q.icon}</span>
-                  <span className={`font-bold text-lg flex-1 text-left ${quests[i] ? 'line-through opacity-80' : ''}`}>{q.task}</span>
-                  <span className="font-black tracking-wider text-sm">{quests[i] ? 'DONE!' : q.pts}</span>
-                </button>
-              ))}
+          <div className="space-y-3">
+            {[
+              { icon: '🛏️', task: 'Make the bed', pts: '+10 ⭐' },
+              { icon: '📗', task: 'Read 20 minutes', pts: '+15 ⭐' },
+              { icon: '🐕', task: 'Walk Biscuit', pts: '+20 ⭐' }
+            ].map((q, i) => (
+              <button 
+                key={i}
+                onClick={() => {
+                  const newQ = [...quests];
+                  newQ[i] = !newQ[i];
+                  setQuests(newQ);
+                }}
+                className={`w-full flex items-center p-4 rounded-2xl transition-all duration-300 active:scale-[0.98] ${quests[i] ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/20' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
+              >
+                <div className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center transition-colors ${quests[i] ? 'border-white bg-amber-500' : 'border-gray-200 bg-gray-50'}`}>
+                  {quests[i] && <Check strokeWidth={3} size={14} />}
+                </div>
+                <span className="text-2xl mr-4">{q.icon}</span>
+                <span className={`font-semibold text-[17px] flex-1 text-left ${quests[i] ? 'line-through opacity-90' : ''}`}>{q.task}</span>
+                <span className="font-bold text-sm tracking-wide">{quests[i] ? 'done!' : q.pts}</span>
+              </button>
+            ))}
+          </div>
+          
+          {quests.every(Boolean) && (
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-8 text-center text-amber-600 font-bold bg-amber-100/50 py-4 rounded-2xl">
+              ALL DONE! Day 6 streak — you legend! 🔥
+            </motion.div>
+          )}
+        </motion.div>
+      </section>
+
+      {/* 19:30 Mail */}
+      <section id="day4" className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center py-20 px-6 gap-12 max-w-5xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.7 }}
+          className="flex-1 w-full bg-[#f5f5f7] p-10 rounded-[2.5rem]"
+        >
+          <div className="bg-white p-8 rounded-3xl shadow-sm mb-4 border border-gray-100">
+            <div className="flex items-center gap-4 mb-6 border-b border-gray-100 pb-6">
+              <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center text-2xl">👨</div>
+              <div>
+                <div className="font-semibold text-gray-900 text-lg">From Dad</div>
+                <div className="text-sm text-purple-600 font-medium">word for word</div>
+              </div>
             </div>
-            
-            {quests.every(Boolean) && (
-              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="mt-8 text-center text-amber-600 font-black text-xl uppercase bg-amber-200 py-4 rounded-2xl border-2 border-amber-300 shadow-inner">
-                ALL QUESTS COMPLETE! 🔥
-              </motion.div>
-            )}
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }}
-            className="flex-1 space-y-6"
-          >
-            <div className="text-amber-500 font-bold tracking-widest text-sm uppercase">16:00 · quest time</div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight">Chores, but make them quests ⭐</h2>
-            <p className="text-xl text-slate-500 leading-relaxed font-medium">
-              You set the quests and the loot. {activeGuide || 'Zap'} does the cheering. Turn everyday routines into a rewarding game.
+            <p className="text-xl text-gray-800 leading-relaxed font-medium mb-8">
+              "Proud of you for the math test. Pizza on Friday to celebrate? 🍕"
             </p>
-          </motion.div>
-        </div>
+            <div className="bg-[#f5f5f7] rounded-2xl p-4 flex items-center gap-4 text-purple-700 cursor-pointer hover:bg-purple-50 transition-colors">
+              <div className="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center pl-1 shadow-md shadow-purple-600/20">
+                <Play size={16} fill="currentColor" />
+              </div>
+              <span className="font-semibold text-sm">voice letter · 0:11</span>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <button className="flex-1 bg-white py-4 rounded-2xl font-bold text-gray-600 hover:bg-gray-50 transition-colors shadow-sm">💜</button>
+            <button className="flex-1 bg-white py-4 rounded-2xl font-bold text-gray-600 hover:bg-gray-50 transition-colors shadow-sm">🍕 YES</button>
+            <button className="flex-2 bg-purple-600 text-white px-8 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 hover:bg-purple-700 transition-all active:scale-[0.98] shadow-md shadow-purple-600/20">
+              🎙 reply
+            </button>
+          </div>
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.7 }}
+          className="flex-1 space-y-6 max-w-lg"
+        >
+          <div className="text-gray-400 font-semibold tracking-widest text-xs uppercase">19:30 · you've got mail</div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-black">A letter, not a notification <span className="inline-block text-3xl">💌</span></h2>
+          <p className="text-lg text-gray-500 leading-relaxed font-normal">
+            Your words wait as a sealed envelope — {activeGuide || 'Zap'} delivers them signed, word for word, never rewritten. Go ahead, open it.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* 21:30 Lights Out */}
+      <section id="day5" className="min-h-screen flex flex-col md:flex-row items-center justify-center py-20 px-6 gap-12 max-w-5xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.7 }}
+          className="flex-1 space-y-6 max-w-lg"
+        >
+          <div className="text-gray-400 font-semibold tracking-widest text-xs uppercase">21:30 · lights out</div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-black">The phone goes to sleep too <span className="inline-block text-3xl">😴</span></h2>
+          <p className="text-lg text-gray-500 leading-relaxed font-normal">
+            No guard rails slamming shut. {activeGuide || 'Zap'} naps, and the lock screen always tells the truth: "Mum set bedtime for 21:30" — never "you've been bad."
+          </p>
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 0.7 }}
+          className="flex-1 w-full bg-[#111111] p-10 rounded-[2.5rem] shadow-2xl shadow-black/20 text-center relative overflow-hidden"
+        >
+          <div className="text-6xl mb-4 opacity-80 mt-2">😴</div>
+          <div className="text-indigo-400 text-sm font-bold tracking-[0.3em] mb-8">z z z</div>
+          <h3 className="text-2xl font-bold text-white mb-3">Shhh… {activeGuide || 'Zap'} is napping</h3>
+          <p className="text-gray-400 mb-10 max-w-[250px] mx-auto leading-relaxed text-sm">
+            Mum set bedtime for 21:30.<br/>Everything's back at 07:00.
+          </p>
+          <div className="space-y-3 mb-8">
+            <button className="w-full bg-[#222222] text-gray-300 py-4 rounded-2xl font-medium hover:bg-[#333333] transition-colors flex items-center justify-center gap-3">
+              🌙 Night sounds
+            </button>
+            <button className="w-full bg-[#222222] text-gray-300 py-4 rounded-2xl font-medium hover:bg-[#333333] transition-colors flex items-center justify-center gap-3">
+              💌 Read mail
+            </button>
+          </div>
+          <p className="text-xs text-gray-500 font-medium">Grown-up? Emergency PIN unlock · SOS always works</p>
+        </motion.div>
       </section>
 
       {/* Footer / CTA */}
-      <section id="download" className="py-32 px-6 text-center bg-indigo-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+      <section id="download" className="py-32 px-6 text-center bg-[#f5f5f7]">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="max-w-3xl mx-auto relative z-10"
+          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+          className="max-w-4xl mx-auto"
         >
-          <h2 className="text-5xl md:text-6xl font-black mb-8 tracking-tight leading-tight uppercase">Ready to Start<br/>Playing?</h2>
-          <p className="text-xl text-indigo-200 mb-12 max-w-2xl mx-auto font-medium">
-            FamilyHub is free to play on both stores. Download now and invite your party.
+          <div className="text-gray-400 font-semibold tracking-widest text-xs uppercase mb-8">that was one day</div>
+          <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight text-black leading-[1.1]">Calm for you.<br/><span className="text-gray-400">A buddy for them.</span></h2>
+          <p className="text-xl text-gray-500 mb-12 max-w-xl mx-auto leading-relaxed font-normal">
+            Free on both stores. Set it up together tonight — that first letter matters.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6 mb-20">
-            <a href="#" className="bg-white text-indigo-900 px-8 py-5 rounded-2xl font-black text-lg uppercase tracking-wider hover:bg-indigo-50 transition border-b-4 border-slate-300 active:border-b-0 active:translate-y-1 flex items-center justify-center gap-3">
-              <Download size={24} strokeWidth={3} /> App Store
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-24">
+            <a href="#" className="bg-black text-white px-8 py-4 rounded-2xl font-semibold text-[15px] hover:bg-gray-800 transition-all active:scale-[0.98] flex items-center justify-center gap-3">
+              <Download size={20} /> Download on the App Store
             </a>
-            <a href="#" className="bg-indigo-600 text-white px-8 py-5 rounded-2xl font-black text-lg uppercase tracking-wider hover:bg-indigo-500 transition border-b-4 border-indigo-950 active:border-b-0 active:translate-y-1 flex items-center justify-center gap-3">
-              <Download size={24} strokeWidth={3} /> Google Play
+            <a href="#" className="bg-black text-white px-8 py-4 rounded-2xl font-semibold text-[15px] hover:bg-gray-800 transition-all active:scale-[0.98] flex items-center justify-center gap-3">
+              <Download size={20} /> Get it on Google Play
             </a>
           </div>
           
-          <div className="pt-12 border-t-2 border-indigo-800/50 text-indigo-300 font-bold flex flex-col items-center gap-4 uppercase tracking-widest text-xs">
-            <p>FamilyHub · Multiplayer Household Management 🎮</p>
-            <div className="flex gap-8 mt-4">
-              <Link href="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link>
-              <Link href="/delete-account" className="hover:text-white transition">Delete Account</Link>
+          <div className="pt-12 border-t border-gray-200 text-gray-500 text-sm flex flex-col items-center gap-5 font-medium">
+            <p>FamilyHub · honest by design — parent words are always signed, locks always say the real reason 💜</p>
+            <div className="flex gap-8 mt-2">
+              <Link href="/privacy-policy" className="hover:text-black transition-colors">Privacy Policy</Link>
+              <Link href="/delete-account" className="hover:text-black transition-colors">Delete Account</Link>
             </div>
           </div>
         </motion.div>
