@@ -17,7 +17,17 @@ export default function PrivacyPolicy() {
         <h2 className="text-xl font-semibold mt-8 mb-4">3. Data Security</h2>
         <p className="text-gray-600 mb-4">All health and emergency card data is securely encrypted. We do not share your family data with third parties.</p>
 
-        <h2 className="text-xl font-semibold mt-8 mb-4">4. Contact</h2>
+        <h2 className="text-xl font-semibold mt-8 mb-4">4. App Reviewer Access</h2>
+        <div className="bg-blue-50 text-blue-900 p-4 rounded-xl mb-4 border border-blue-100">
+          <p className="font-semibold mb-2">Google Play Review Team Login Instructions:</p>
+          <ul className="list-disc ml-5 text-sm space-y-1">
+            <li><strong>Email:</strong> googleplay@familyhub.com</li>
+            <li><strong>Password:</strong> TestPassword123!</li>
+          </ul>
+          <p className="text-sm mt-3">This test account is pre-configured with a dummy family workspace. You can bypass the initial onboarding and fully test all app features, including the SOS button, tasks, and ledger.</p>
+        </div>
+
+        <h2 className="text-xl font-semibold mt-8 mb-4">5. Contact</h2>
         <p className="text-gray-600 mb-4">For any privacy concerns, contact us at privacy@difmo.com.</p>
       </div>
     </main>
